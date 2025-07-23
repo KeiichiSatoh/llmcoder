@@ -12,8 +12,8 @@ coding_gpt(
   include_df = TRUE,
   overall_instruction = NULL,
   base_url = "https://api.openai.com/v1",
-  api_key = openai_key(),
-  params = NULL,
+  api_key = NULL,
+  params = list(),
   seed = lifecycle::deprecated(),
   api_args = list(),
   echo = c("none", "output", "all"),
@@ -21,7 +21,7 @@ coding_gpt(
 )
 }
 \arguments{
-\item{df}{A \code{data.frame} containing the text to be processed.}
+\item{df}{A \code{data.frame} or vector containing the text to be processed.}
 
 \item{type_object_setting}{A \code{TypeObject} created via \code{ellmer::type_object()}
 that defines the expected structure of the output.}
@@ -30,7 +30,7 @@ that defines the expected structure of the output.}
 which column of \code{df} contains the text input. Defaults to \code{1}.}
 
 \item{model}{Character string specifying the OpenAI model to use. Defaults to
-\code{"gpt-4.1"}. Examples include \code{"gpt-4o"} and \code{"gpt-3.5-turbo"}.}
+\code{"gpt-4.1"}. See https://platform.openai.com/docs/models for other models.}
 
 \item{include_df}{Logical. If \code{TRUE}, the result is merged with the input \code{df}.
 If \code{FALSE}, only the response is returned. Defaults to \code{TRUE}.}
@@ -40,7 +40,8 @@ If \code{FALSE}, only the response is returned. Defaults to \code{TRUE}.}
 
 \item{base_url}{The base URL for the OpenAI API. Defaults to \code{"https://api.openai.com/v1"}.}
 
-\item{api_key}{Character string containing your OpenAI API key. Defaults to \code{openai_key()}.}
+\item{api_key}{Character string containing your OpenAI API key. If \code{NULL},
+the key will be retrieved from the environment variable \code{"OPENAI_API_KEY"}.}
 
 \item{params}{Optional list of additional parameters to pass to the model (e.g., temperature, max_tokens).}
 
@@ -77,23 +78,33 @@ and optionally merges the results back into the original data frame.
 Below are examples of how to define a \code{TypeObject} using the \code{type_object()}
 constructor:
 
-\code{
-# Example 1: Simple type object
-type_object(
-  name = type_string(),
-  age = type_number()
-)
+Example 1: Simple type object
 
-# Example 2: With custom instructions
-type_object(
-  name = type_string("Extracted entity name."),
-  type = type_enum("Entity type: one of 'person', 'location', 'organization'"),
-  age = type_number("Age in years.")
-)
+\preformatted{
+    type_object(
+      name = type_string(),
+      age = type_number()
+    )
 }
 
-Supported base types include: \code{type_boolean()} (logical), \code{type_integer()} (integer),
-\code{type_number()} (double), \code{type_string()} (string), and \code{type_enum()} (categorical).
+Example 2: With custom instructions
+
+\preformatted{
+    type_object(
+      name = type_string("Extracted entity name."),
+      type = type_enum("Entity type: one of 'person', 'location', 'organization'"),
+      age = type_number("Age in years.")
+    )
+}
+
+Supported base types include:
+\itemize{
+\item \code{type_boolean()}: logical
+\item \code{type_integer()}: integer
+\item \code{type_number()} : double
+\item \code{type_string()} : string, and
+\item \code{type_enum()}   : categorical.
+}
 
 For more information, see the ellmer vignette:
 \url{https://ellmer.tidyverse.org/articles/structured-data.html}
@@ -103,8 +114,8 @@ For more information, see the ellmer vignette:
 You can provide the API key directly via the \code{api_key} argument, or set it through an environment variable.
 
 \emph{Option 1: Temporary environment variable (valid for current session)}
-\code{
-Sys.setenv(OPENAI_API_KEY = "your_key_here")
+\preformatted{
+    Sys.setenv(OPENAI_API_KEY = "your_key_here")
 }
 
 \emph{Option 2: Permanent setting via .Renviron}
@@ -118,7 +129,9 @@ Sys.setenv(OPENAI_API_KEY = "your_key_here")
 \dontrun{
 df <- data.frame(ID = 1:2, text = c("東京都渋谷区", "大阪府大阪市北区"))
 schema <- type_object(city = type_string(), district = type_string())
-result <- coding_gpt(df, schema, which_col = "text", model = "gpt-4o")
+result <- coding_gpt(df = df,
+                     which_col = "text",
+                     type_object_setting = schema, 
+                     api_key = "[API_KEY]")               # set your OpenAI API KEY
 }
-
 }
