@@ -1,11 +1,18 @@
 Package: llmcoder
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Coding Qualitative Data with Large Language Models
+Version: 0.0.1
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Satoh", "Keiichi", , "keiichi.satoh@r.hit-u.ac.jp", role = c("aut", "cre"))
+Description: This package facilitates the integration of large language models (LLMs), 
+    such as ChatGPT, into qualitative data processing and coding workflows. 
+    It provides wrapper functions to streamline interaction between data.frame 
+    objects—a standard data structure in R—and LLM-based APIs.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    ellmer
