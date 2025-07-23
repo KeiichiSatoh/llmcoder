@@ -14,7 +14,7 @@ coding_gpt(
   base_url = "https://api.openai.com/v1",
   api_key = NULL,
   params = list(),
-  seed = lifecycle::deprecated(),
+  seed = NULL,
   api_args = list(),
   echo = c("none", "output", "all"),
   nchar_warning_limit = 1e+05

@@ -111,7 +111,7 @@ coding_gpt <- function(
     base_url = "https://api.openai.com/v1",
     api_key = NULL,
     params = list(),
-    seed = lifecycle::deprecated(),
+    seed = NULL,
     api_args = list(),
     echo = c("none", "output", "all"),
     nchar_warning_limit = 100000
@@ -126,8 +126,8 @@ coding_gpt <- function(
   }
   
   # seed
-  if (lifecycle::is_present(seed)) {
-    lifecycle::deprecate_warn("0.2.0", "chat_openai(seed)", "chat_openai(params)")
+  if(!is.null(seed)){
+    stopifnot(is.numeric(seed))
     params$seed <- seed
   }
   
