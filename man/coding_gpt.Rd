@@ -43,7 +43,8 @@ If \code{FALSE}, only the response is returned. Defaults to \code{TRUE}.}
 \item{api_key}{Character string containing your OpenAI API key. If \code{NULL},
 the key will be retrieved from the environment variable \code{"OPENAI_API_KEY"}.}
 
-\item{params}{Optional list of additional parameters to pass to the model (e.g., temperature, max_tokens).}
+\item{params}{Optional list of additional parameters to pass to the model
+(e.g., temperature, max_tokens). See also \link[ellmer:params]{params} for detail.}
 
 \item{seed}{Optional integer seed that ChatGPT uses to try and make output
 more reproducible.}

@@ -1,6 +1,16 @@
-# llmcoder 0.0.1 (2025-07-23) 
+# llmcoder 0.0.2 (2025-07-25)
+
+## Modified
+- Re-exported `ellmer::type_object` and related functions, 
+so they can now be used without explicitly loading the `ellmer` package. 
+The README has been updated accordingly.
+- `coding_gpt()`: Improved the function documentation.
+
+# llmcoder 0.0.1 (2025-07-23)
 
 ## Initial release
-- Basic documents released such as Description, news, and license.
+- Released basic documentation including DESCRIPTION, NEWS, and LICENSE files.
+
 ## Added
-- `coding_gpt`: wrapper function of ellmer::openai_chat for data.frame object.
+- `coding_gpt()`: A wrapper function around `ellmer::openai_chat()` for 
+processing `data.frame` objects.

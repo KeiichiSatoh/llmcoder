@@ -1,6 +1,6 @@
 Package: llmcoder
 Title: Coding Qualitative Data with Large Language Models
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Satoh", "Keiichi", , "keiichi.satoh@r.hit-u.ac.jp", role = c("aut", "cre"))
 Description: This package facilitates the integration of large language models (LLMs), 

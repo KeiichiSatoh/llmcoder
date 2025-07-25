@@ -19,6 +19,7 @@ You can install the development version of llmcoder from
 
 ``` r
 # install.packages("pak")
+library(pak)
 pak::pak("KeiichiSatoh/llmcoder")
 ```
 
@@ -37,7 +38,8 @@ library(llmcoder)
 
 # Register your API key (temporary session-based)
 Sys.setenv(OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxx")
-# Alternatively, the API key can also be stored in .Renviron for persistence across sessions.
+# Alternatively, you can store the API key in your .Renviron file to make it persist across sessions.
+# As a more convenient option, you can also pass the API key directly as an argument to the `coding_gpt()` function.
 
 # Create a sample data.frame
 df <- data.frame(
@@ -46,8 +48,8 @@ df <- data.frame(
 )
 
 # Create a TypeObject that defines the expected structure of the GPT response
-type_object_setting <- ellmer::type_object(
-  favorite_fruits = ellmer::type_string("Extract the speaker's favorite fruits")
+type_object_setting <- type_object(
+  favorite_fruits = type_string("Extract the speaker's favorite fruits")
 )
 
 # Define overall instruction (optional)

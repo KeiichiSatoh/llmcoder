@@ -23,7 +23,8 @@
 #' @param base_url The base URL for the OpenAI API. Defaults to `"https://api.openai.com/v1"`.
 #' @param api_key Character string containing your OpenAI API key. If \code{NULL}, 
 #' the key will be retrieved from the environment variable \code{"OPENAI_API_KEY"}.
-#' @param params Optional list of additional parameters to pass to the model (e.g., temperature, max_tokens).
+#' @param params Optional list of additional parameters to pass to the model 
+#' (e.g., temperature, max_tokens). See also \link[ellmer:params]{params} for detail.
 #' @param seed 	Optional integer seed that ChatGPT uses to try and make output
 #'  more reproducible.
 #' @param api_args Additional API-specific arguments passed as a list. 
